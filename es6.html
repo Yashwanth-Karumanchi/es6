@@ -1,0 +1,87 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6 Functions</title>
+</head>
+
+<body>
+    <button onclick="myFunction()">Add</button>
+    <p>SUM:</p>
+    <p id="SUM"></p>
+    <button onclick="myFunction1()">Promise</button>
+    <button onclick="myFunction2()">Callback</button>
+    <button onclick="myFunction3()">Async</button>
+    <button onclick="myfunction4()">Iterator</button>
+    <script>
+        //arrow function
+        let myFunction = () => {
+            let a = parseInt(prompt("Enter first number:"))
+            let b = parseInt(prompt("Enter second number:"))
+            document.getElementById("SUM").innerHTML = a + b;
+        }
+        //promise
+        let myFunction1 = () => {
+            const x = prompt("Enter first string:");
+            const y = prompt("Enter second string:");
+            var promise = new Promise(function (resolve, reject) {
+                if (x == y) {
+                    resolve();
+                }
+                else {
+                    reject();
+                }
+            });
+            promise.then(function(){
+                console.log('Both strings are same')
+            })
+            .catch(function(){
+                console.log('Strings are not same')
+            });
+        }
+        //callback
+        let myFunction2 = () => {
+            function greet(name, callback) {
+                console.log('Hi' + ' ' + name);
+                callback();
+            }
+            // callback function
+            function callMe() {
+                console.log('Callback function');
+            }
+            greet('Yashwanth', callMe);
+        }
+        //async await
+        let myFunction3 = () => {
+            let prom = new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    resolve('Resolved promise')
+                }, 4000);
+            });
+            // async function
+            async function asyncFunc() {
+                let result = await prom;
+                console.log(result)
+                console.log('Hello')
+            }
+            asyncFunc()
+        }
+
+        let myfunction4 = () => {
+            console.log("Without iterator:")
+            let arr = [1,2,3,4,5]
+            for(let i = 0; i < arr.length; i++)
+                console.log(arr[i])
+
+            console.log("Using Symbol Iterator:")
+            //Symbol Iterator
+            let itr = arr[Symbol.iterator]()
+            console.log(itr.next())
+            console.log(itr.next().value)
+        }
+    </script>
+    </body>
+</html>
